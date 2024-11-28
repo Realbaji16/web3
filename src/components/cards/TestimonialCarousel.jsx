@@ -48,46 +48,47 @@ const TestimonialCarousel = () => {
   };
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto mt-10">
-      {/* Carousel Inner Container */}
-      <div className="overflow-hidden relative">
-        {/* Carousel Items Wrapper */}
-        <div
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="w-full md:w-1/3 flex-shrink-0 p-4">
-              <div className="bg-white rounded-lg shadow-md p-6 h-full flex flex-col justify-between">
-                <p className="text-lg text-gray-700 mb-4">"{testimonial.quote}"</p>
-                <h3 className="font-semibold text-gray-800">{testimonial.name}</h3>
-                <span className="text-sm text-gray-500">{testimonial.title}</span>
-              </div>
-            </div>
-          ))}
+<div className="relative w-full max-w-5xl mx-auto mt-10 pb-16">
+  {/* Carousel Inner Container */}
+  <div className="overflow-hidden relative">
+    {/* Carousel Items Wrapper */}
+    <div
+      className="flex transition-transform duration-500 ease-out"
+      style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+    >
+      {testimonials.map((testimonial, index) => (
+        <div key={index} className="w-full md:w-1/3 flex-shrink-0 p-4">
+          <div className="bg-white rounded-lg shadow-md p-6 h-full flex flex-col justify-between">
+            <p className="text-lg text-gray-700 mb-4">"{testimonial.quote}"</p>
+            <h3 className="font-semibold text-gray-800">{testimonial.name}</h3>
+            <span className="text-sm text-gray-500">{testimonial.title}</span>
+          </div>
         </div>
-      </div>
-
-      {/* Carousel Controls */}
-      <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4">
-        <button
-          onClick={prevSlide}
-          className="bg-gray-700 text-white p-2 rounded-full hover:bg-gray-800 focus:outline-none"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={nextSlide}
-          className="bg-gray-700 text-white p-2 rounded-full hover:bg-gray-800 focus:outline-none"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
+      ))}
     </div>
+  </div>
+
+  {/* Carousel Controls */}
+  <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4">
+    <button
+      onClick={prevSlide}
+      className="bg-gray-700 text-white p-2 rounded-full hover:bg-gray-800 focus:outline-none"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <button
+      onClick={nextSlide}
+      className="bg-gray-700 text-white p-2 rounded-full hover:bg-gray-800 focus:outline-none"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+</div>
+
   );
 };
 

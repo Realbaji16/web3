@@ -1,7 +1,10 @@
 import "./index.css";
 import Home from './pages/Home.jsx'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Modal from "./modal1.jsx";
 import { Detail } from "./components/Detail.jsx";
+import Withdrawal from "./components/cards/Withdrawal.jsx";
 
 
 
@@ -15,6 +18,7 @@ import TestimonialCarousel from "./components/cards/TestimonialCarousel.jsx";
 import Navbar from "./components/cards/Navbar.jsx";
 import TradingViewWidget from "./components/cards/TradingWidget.jsx";
 import Dashboard from "./components/cards/Dashboard.jsx";
+import Rewards from "./components/cards/Rewards.jsx";
 // Initialize Moralis outside the component or in a separate setup file
 Moralis.start({
   apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjU3ODQ3MTFkLTA5ODAtNGQzOC1iZDNmLTdhZTUxMzc1MjA1NiIsIm9yZ0lkIjoiMzg1MDY5IiwidXNlcklkIjoiMzk1NjY5IiwidHlwZUlkIjoiMjQ1ZGI4MmUtZjExNS00ZDU3LWI4NzMtNTEwZDk0YTQyNjliIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MTE1ODA0OTAsImV4cCI6NDg2NzM0MDQ5MH0.-HXLLlSZRWwGGZmt92UcD1rDKW62hLqPlDZY0r3eRt4", // Replace with your actual Moralis API Key
@@ -198,89 +202,104 @@ const postData = async (
 
 
 return (
+  <Router>
   <div className="App">
   <Navbar />
   <TradingViewWidget />
+  <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+              <div className="min-h-screen flex justify-center items-center text-white py-16 px-4 md:px-0">
+                <div className="w-full max-w-md flex flex-col gap-10">
+                  <div>
+                    <h2 className="font-bold text-black text-2xl mx-auto w-fit">
+                      Stake Ether
+                    </h2>
+                    <h3 className="font-medium text-black text-xs mx-auto w-fit text-[#b3b5b8] mt-1 mb-4">
+                      Stake and receive stETH while staking
+                    </h3>
+                    {isConnected && balance !== null && (
+                      <Dashboard address={address} balance={balance} />
+                    )}
+                    <div className="bg-white p-6 md:p-8 flex flex-col gap-6 rounded-xl">
+                      <NumberInput />
+
+                      <button
+                        type="button"
+                        className="bg-[#00a3ff] text-[#f7fcff] p-4 rounded-xl text-sm font-bold"
+                        onClick={open}
+                      >
+                        Connect Wallet
+                      </button>
+
+                      {/* Inner card */}
+                      <div className="inn inn2 p-4 rounded-xl grid gap-6">
+                        <div>
+                          <h3 className="text-xl font-semibold">
+                            New way to support decentralization
+                          </h3>
+                          <p className="text-sm mt-[5px] mb-[10px]">
+                            You can stake ETH in{' '}
+                            <span className="text-[#00a3ff]">the DVV vault</span> to get
+                            stETH rewards, gain points and help to decentralize the Lido
+                            Protocol
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-6 text-xs font-semibold">
+                          <span className="flex items-center gap-4">
+                            <Icon name="steth" />
+                            <span>stETH APR</span>
+                            <span>+</span>
+                          </span>
+                          <Icon name="group" />
+                          <span className="flex items-center gap-1 flex-wrap md:flex-nowrap">
+                            <span>Obol</span>
+                            <span>+</span>
+                            <span>SSV</span>
+                            <span>+</span>
+                            <span>Mellow Points</span>
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-3 items-center">
+                          <p className="text-[#7e7e83] text-[11px] font-medium col-span-2">
+                            Not financial advice. Info and APR are illustrative, actual
+                            rewards may vary. Vaults use carries risk. By proceeding,
+                            you'll be redirected to a third-party site.
+                          </p>
+                          <button
+                            type="button"
+                            className="bg-[#00a3ff] text-[#f7fcff] px-4 py-2 rounded-lg text-xs font-bold w-fit justify-self-end"
+                          >
+                            Proceed
+                          </button>
+                        </div>
+                      </div>
+
+                      <Detail title="You will receive" value="3434434.0 stETH" />
+                      <Detail title="Max transaction cost" value="1 ETH = 1 stETH" />
+                      <Detail title="Exchange rate" value="$2.68" />
+                      <Detail title="Reward fee" value="10%" tooltip="asfasdf" />
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+              <Home />
+              <TestimonialCarousel />
+              </div>
+            }
+          />
 
 
-  <div className="min-h-screen flex justify-center items-center text-white py-16 px-4 md:px-0">
-    <div className="w-full max-w-md flex flex-col gap-10">
-      <div>
-        <h2 className="font-bold text-black text-2xl mx-auto w-fit">Stake Ether</h2>
-        <h3 className="font-medium text-black text-xs mx-auto w-fit text-[#b3b5b8] mt-1 mb-4">
-          Stake and receive stETH while staking
-        </h3>
-        {isConnected && balance !== null && (
-      <Dashboard address={address} balance={balance} />
-    )}
-        <div className="bg-white p-6 md:p-8 flex flex-col gap-6 rounded-xl">
-          <NumberInput />
-  
-            <button
-              type="button"
-              className="bg-[#00a3ff] text-[#f7fcff] p-4 rounded-xl text-sm font-bold"
-              onClick={open}
-            >
-              Connect Wallet
-            </button>
-       
-
-          {/* INNER CARD */}
-          <div className="inn inn2 p-4 rounded-xl grid gap-6">
-            <div>
-              <h3 className="text-xl font-semibold">New way to support decentralization</h3>
-              <p className="text-sm mt-[5px] mb-[10px]">
-                You can stake ETH in{" "}
-                <span className="text-[#00a3ff]">the DVV vault</span> to get
-                stETH rewards, gain points and help to decentralize the Lido
-                Protocol
-              </p>
-            </div>
-            <div className="flex items-center gap-6 text-xs font-semibold">
-              <span className="flex items-center gap-4">
-                <Icon name="steth" />
-                <span>stETH APR</span>
-                <span>+</span>
-              </span>
-              <Icon name="group" />
-              <span className="flex items-center gap-1 flex-wrap md:flex-nowrap">
-                <span>Obol</span>
-                <span>+</span>
-                <span>SSV</span>
-                <span>+</span>
-                <span>Mellow Points</span>
-              </span>
-            </div>
-            <div className="grid grid-cols-3 items-center">
-              <p className="text-[#7e7e83] text-[11px] font-medium col-span-2">
-                Not financial advice. Info and APR are illustrative, actual
-                rewards may vary. Vaults use carries risk. By proceeding,
-                you'll be redirected to a third-party site.
-              </p>
-              <button
-                type="button"
-                className="bg-[#00a3ff] text-[#f7fcff] px-4 py-2 rounded-lg text-xs font-bold w-fit justify-self-end"
-              >
-                Proceed
-              </button>
-            </div>
-          </div>
-
-          <Detail title="You will receive" value="3434434.0 stETH" />
-          <Detail title="Max transaction cost" value="1 ETH = 1 stETH" />
-          <Detail title="Exchange rate" value="$2.68" />
-          <Detail title="Reward fee" value="10%" tooltip="asfasdf" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <Home />
-  <TestimonialCarousel />
+          <Route path="/withdrawal" element={<Withdrawal />} />
+          <Route path="/rewards" element={<Rewards />} />
+        </Routes>
   <div id="lido-ui-modal-root"></div>
   <Modal message={errorMessage} onClose={handleCloseModal} />
 </div>
-
+</Router>
 );
 }
 

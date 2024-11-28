@@ -3,6 +3,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { useAccount } from 'wagmi';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt, faDollarSign, faInfoCircle, faTrophy } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom'; // Import Link for internal routing
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,53 +23,44 @@ const Navbar = () => {
     <nav className="bg-gray-800 text-white fixed bottom-0 w-full md:relative md:bottom-auto md:w-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <div className="hidden md:block">
-            <a href="/" className="text-xl font-bold text-white">
-              MyLogo
-            </a>
+            <a href="/" className="text-xl font-bold text-white">MyLogo</a>
           </div>
-
-          {/* Main Links - Hidden on mobile */}
           <div className="hidden md:flex space-x-8 ml-10">
-            <a href="#features" className="text-gray-300 hover:text-white flex items-center">
+            <Link to="/" className="text-gray-300 hover:text-white flex items-center">
               <FontAwesomeIcon icon={faBolt} />
               <span className="ml-2">Stake</span>
-            </a>
-            <a href="#pricing" className="text-gray-300 hover:text-white flex items-center">
+            </Link>
+            <Link to="/pricing" className="text-gray-300 hover:text-white flex items-center">
               <FontAwesomeIcon icon={faDollarSign} />
               <span className="ml-2">Wrap</span>
-            </a>
-            <a href="#about" className="text-gray-300 hover:text-white flex items-center">
+            </Link>
+            <Link to="/withdrawal" className="text-gray-300 hover:text-white flex items-center">
               <FontAwesomeIcon icon={faInfoCircle} />
-              <span className="ml-2">Withdrawals</span>
-            </a>
-            <a href="#contact" className="text-gray-300 hover:text-white flex items-center">
+              <span className="ml-2">Withdrawal</span>
+            </Link>
+            <Link to="/rewards" className="text-gray-300 hover:text-white flex items-center">
               <FontAwesomeIcon icon={faTrophy} />
               <span className="ml-2">Rewards</span>
-            </a>
+            </Link>
           </div>
 
-          {/* Wallet Connection Buttons */}
           <div className="hidden md:flex space-x-4">
             {isConnected ? (
               <span className="font-bold text-white">{displayAddress}</span>
             ) : (
               <>
-                <button className="bg-transparent border border-white px-4 py-2 rounded hover:bg-white hover:text-gray-800 transition">
-                  Sign In
-                </button>
+            
                 <button
                   onClick={() => open()}
                   className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600 transition"
                 >
-                  Sign Up
+                  Connect Wallet
                 </button>
               </>
             )}
           </div>
 
-          {/* Mobile Toggle Button */}
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -103,24 +95,20 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="flex md:hidden space-x-8 justify-around w-full">
-         
-          <a href="#features" className="text-gray-300 hover:text-white">
-              <FontAwesomeIcon icon={faBolt} size="lg" />
-            </a>
-            <a href="#pricing" className="text-gray-300 hover:text-white">
-              <FontAwesomeIcon icon={faDollarSign} size="lg" />
-            </a>
-            <a href="#about" className="text-gray-300 hover:text-white">
-              <FontAwesomeIcon icon={faInfoCircle} size="lg" />
-            </a>
-            <a href="#contact" className="text-gray-300 hover:text-white">
-              <FontAwesomeIcon icon={faTrophy} size="lg" />
-            </a>
-
-     
-  
-        </div>
+        <div className="fixed bottom-0 left-0 w-full bg-gray-800 flex justify-around py-3 md:hidden">
+  <Link to="/" className="text-gray-300 hover:text-white flex flex-col items-center">
+    <FontAwesomeIcon icon={faBolt} size="lg" />
+  </Link>
+  <Link to="/pricing" className="text-gray-300 hover:text-white flex flex-col items-center">
+    <FontAwesomeIcon icon={faDollarSign} size="lg" />
+  </Link>
+  <Link to="/withdrawal" className="text-gray-300 hover:text-white flex flex-col items-center">
+    <FontAwesomeIcon icon={faInfoCircle} size="lg" />
+  </Link>
+  <Link to="/rewards" className="text-gray-300 hover:text-white flex flex-col items-center">
+    <FontAwesomeIcon icon={faTrophy} size="lg" />
+  </Link>
+</div>
       )}
     </nav>
   );

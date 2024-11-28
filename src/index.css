@@ -43,3 +43,24 @@ input[type=number] {
 .inn2  {
   background-color: rgb(242, 243, 252);
 }
+
+.fixed-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1a1a2e; /* Replace with your desired background color */
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
+  z-index: 50;
+}
+
+.fixed-nav a {
+  color: #8f8f8f; /* Inactive state color */
+  transition: color 0.3s ease;
+}
+
+.fixed-nav a:hover {
+  color: #ffffff; /* Active state color */
+}
