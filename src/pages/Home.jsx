@@ -5,7 +5,7 @@ import { Statistics } from "../components/cards/Statistics";
 export default function Home() {
 
   return (
-    <div className=" flex justify-center items-center text-white py-4">
+    <div className=" flex justify-center items-center text-white py-4 mx-4">
       <div className="md:w-[min(90%,_500px)] flex flex-col gap-10">
       
         <div>

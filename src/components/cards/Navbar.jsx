@@ -94,22 +94,21 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="fixed bottom-0 left-0 w-full bg-gray-800 flex justify-around py-3 md:hidden">
+      <div className="fixed bottom-0 left-0 w-full bg-gray-800 flex justify-around py-6 md:hidden">
   <Link to="/" className="text-gray-300 hover:text-white flex flex-col items-center">
-    <FontAwesomeIcon icon={faBolt} size="lg" />
+    <FontAwesomeIcon icon={faBolt} size="2x" />
   </Link>
   <Link to="/pricing" className="text-gray-300 hover:text-white flex flex-col items-center">
-    <FontAwesomeIcon icon={faDollarSign} size="lg" />
+    <FontAwesomeIcon icon={faDollarSign} size="2x" />
   </Link>
   <Link to="/withdrawal" className="text-gray-300 hover:text-white flex flex-col items-center">
-    <FontAwesomeIcon icon={faInfoCircle} size="lg" />
+    <FontAwesomeIcon icon={faInfoCircle} size="2x" />
   </Link>
   <Link to="/rewards" className="text-gray-300 hover:text-white flex flex-col items-center">
-    <FontAwesomeIcon icon={faTrophy} size="lg" />
+    <FontAwesomeIcon icon={faTrophy} size="2x" />
   </Link>
 </div>
-      )}
+
     </nav>
   );
 };
